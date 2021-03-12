@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Seminarski_rad_Olujic_AnaMaria.Models.SeminarModel>
+
+@{
+    ViewBag.Title = "PopisSeminara";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<br />
+
+<p>
+    @using (Html.BeginForm("PopisSeminara", "Seminar", null, FormMethod.Get, new { @class = "form-inline" }))
+    {
+        @Html.Partial("_Search")
+
+    }
+
+</p>
+
+<br />
+
+<p>
+    @Html.ActionLink("Novi", "KreirajSeminar", null, new { @class = "btn btn-primary" }) 
+    
+</p>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+
+        
+
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.ActionLink("Naziv", "PopisSeminara", new { sortOrder = ViewBag.SortNaziv })
+            </th>
+            <th>
+                @Html.ActionLink("Opis", "PopisSeminara", new { sortOrder = ViewBag.SortOpis })
+            </th>
+            <th>
+                @Html.ActionLink("Datum", "PopisSeminara", new { sortOrder = ViewBag.SortDatum })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Popunjen)
+            </th>
+            <th>
+                @Html.ActionLink("Predavac", "PopisSeminara", new { sortOrder = ViewBag.SortPredavac })
+            </th>
+            <th>
+                @Html.ActionLink("Broj polaznika", "PopisSeminara", new { sortOrder = ViewBag.SortBrojPolaznika })
+            </th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Uredi", "UrediSeminar", new { id = item.Id }) |
+                    @Html.ActionLink("Obriši", "ObrisiSeminar", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Popunjen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Predavac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Predbiljezba.Count)
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+
+</table>

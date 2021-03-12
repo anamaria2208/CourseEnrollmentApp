@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Seminarski_rad_Olujic_AnaMaria.Models.SeminarModel>
+
+@{
+    ViewBag.Title = "PopisSeminara";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<p>
+    @using (Html.BeginForm("PopisSeminaraZaPredbiljezbu", "Seminar", null, FormMethod.Get, new { @class = "form-inline" }))
+    {
+        <div class="container">
+            <div class="row">
+                @Html.Partial("_Search")
+            </div>
+        </div>
+        
+
+    }
+</p>
+
+<br />
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.ActionLink("Naziv", "PopisSeminaraZaPredbiljezbu", new { sortOrder= ViewBag.SortNaziv })
+            </th>
+            <th>
+                @Html.ActionLink("Opis", "PopisSeminaraZaPredbiljezbu", new { sortOrder = ViewBag.SortOpis })
+            </th>
+            <th>
+                @Html.ActionLink("Datum", "PopisSeminaraZaPredbiljezbu", new { sortOrder = ViewBag.SortDatum })
+            </th>
+            <th>
+                @Html.ActionLink("Predavač", "PopisSeminaraZaPredbiljezbu", new { sortOrder = ViewBag.SortPredavac })
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Odaberi", "KreirajPredbiljezbu", "Predbiljezba", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Predavac)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

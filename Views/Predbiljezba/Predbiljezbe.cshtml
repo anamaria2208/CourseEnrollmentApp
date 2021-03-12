@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Seminarski_rad_Olujic_AnaMaria.Models.PredbiljezbaModel>
+
+@{
+    ViewBag.Title = "PopisPredbiljezbi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<p>
+    @using (Html.BeginForm("PopisPredbiljezbi", "Predbiljezba", null, FormMethod.Get, new { @class = "form-inline" }))
+    {
+
+    <div class="container">
+        <div class="row">
+            <div class="form-group col-sd-3">
+                <label>Status:</label>
+            </div>
+            <div class="form-group col-sd-3">
+                <select name="predbiljezbaStatus" class="form-control">
+                    <option value="Sve">Sve</option>
+                    <option value="Prihvaceno">Prihvćeno</option>
+                    <option value="Odbijeno">Odbijeno</option>
+                    <option value="Neobradeno">Neobrađeno</option>
+                </select>
+            </div>
+
+            @Html.Partial("_Search")
+        </div>
+        
+    </div>
+     
+
+    }
+
+</p>
+
+<br />
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.ActionLink("Seminar", "PopisPredbiljezbi", new { sortOrder = ViewBag.SortNaziv })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prezime)
+            </th>
+            <th>
+                @Html.ActionLink("Datum", "PopisPredbiljezbi", new { sortOrder = ViewBag.SortDatum })
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Adresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
+            <th>
+                @Html.ActionLink("Status", "PopisPredbiljezbi", new { sortOrder = ViewBag.SortStatus })
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Odaberi", "UrediPredbiljezbu", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seminar.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datum)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statusi)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "ObrisiSeminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:red">Greška!!!</h2>
+
+<h3>Ne možete obrisati seminar sa upisanim polaznicima!</h3>
+
+@Html.ActionLink("Natrag na popis seminara", "PopisSeminara", null, new {@class="btn btn-primary" })
+
